@@ -41,7 +41,6 @@
             }
         }
 
-        // Ülőhely létrehozása
         function createListItem(seatList, name) {
             const listItem = document.createElement("li");
             listItem.innerHTML = `<span class="blue-square"></span> <span contenteditable="true" oninput="updateName(event)">${name !== "" ? name : "Üres hely"}</span>`;
