@@ -7,7 +7,8 @@ body {
 
 h1 {
     text-align: center;
-
+    margin: 20px 0;
+    color: #007BFF;
 }
 
 form {
@@ -25,6 +26,7 @@ button {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 button:hover {
@@ -33,7 +35,8 @@ button:hover {
 
 h2 {
     text-align: center;
-    margin-top: 20px;
+    margin: 20px 0;
+    color: #007BFF;
 }
 
 .seat-columns {
@@ -42,9 +45,10 @@ h2 {
     margin-top: 20px;
 }
 
-.seat-column {
+.seat-column, .data-column {
     text-align: center;
     flex: 1;
+    margin: 0 10px; /* Adjust the margin for spacing */
 }
 
 ul {
@@ -59,25 +63,25 @@ li {
     padding: 10px;
     background-color: #007BFF;
     color: white;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     text-align: center;
     line-height: 1.2;
     border-radius: 5px;
     box-sizing: border-box;
     display: block;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 li:empty {
     background-color: #f4f4f4;
     color: #333;
     border: 2px solid #ccc;
+    cursor: not-allowed;
 }
 
-#seatColumn1 li:nth-child(-n+10) {
-    margin-bottom: 0;
-}
-
-#seatColumn2 li:nth-last-child(-n+10) {
-    margin-bottom: 0;
+li:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
 }
