@@ -1,14 +1,14 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-image: linear-gradient(to right, rgb(53, 0, 78), rgb(0, 139, 231), rgb(53, 0, 78));
 }
 
 h1 {
     text-align: center;
     margin: 20px 0;
-    color: #007BFF;
+    color: #000000;
 }
 
 form {
@@ -21,34 +21,39 @@ label, input, button {
 }
 
 button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    border-color: #000000;
+    border-style: solid;
+    border-width: 3px;
     padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: rgb(255, 255, 255);
+    transform: scale(1.05);
 }
 
 h2 {
     text-align: center;
     margin: 20px 0;
-    color: #007BFF;
+    color: #000000;
 }
 
 .seat-columns {
     display: flex;
-    justify-content: space-around;
+    justify-content: left;
     margin-top: 20px;
+    margin-bottom: 10px;
 }
 
-.seat-column, .data-column {
+.seat-column {
     text-align: center;
     flex: 1;
-    margin: 0 10px;
+    margin-bottom: 10px;
 }
 
 ul {
@@ -59,15 +64,19 @@ ul {
 }
 
 li {
+    font-size: 20px;
+    margin-top: 10px;
     margin-bottom: 10px;
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
     width: 120px;
     height: 120px;
     text-align: center;
     line-height: 1.2;
     border-radius: 5px;
+    border-color: #000000;
+    border-style: solid;
+    border-width: 3px;
     box-sizing: border-box;
     display: block;
     cursor: pointer;
@@ -82,6 +91,14 @@ li:empty {
 }
 
 li:hover {
-    background-color: #0056b3;
+    background-color: rgba(0, 255, 234, 0);
     transform: scale(1.05);
+}
+
+#seatColumn1 li:nth-child(-n+10) {
+    margin-bottom: 0;
+}
+
+#seatColumn2 li:nth-last-child(-n+10) {
+    margin-bottom: 0;
 }
