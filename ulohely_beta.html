@@ -9,13 +9,13 @@
 
     <div class="seat-columns">
         <div class="seat-column" id="seatColumn1">
-            <h2>Ülőhelyek (Oszlop 1):</h2>
+            <h2>Ülőhelyek (1. oszlop):</h2>
             <ul id="seatList1" ondrop="drop(event, 'seatList1')" ondragover="allowDrop(event)">
             </ul>
         </div>
 
         <div class="seat-column" id="seatColumn2">
-            <h2>Ülőhelyek (Oszlop 2):</h2>
+            <h2>Ülőhelyek (2. oszlop):</h2>
             <ul id="seatList2" ondrop="drop(event, 'seatList2')" ondragover="allowDrop(event)">
             </ul>
         </div>
@@ -131,11 +131,12 @@
             const seatList = document.getElementById(seatListId);
             const listItem = event.target;
 
-            const temp = listItem.textContent.trim();
+            if (!seats1.includes(data) && !seats2.includes(data)) {
+                listItem.textContent = "";
+            }
+
             listItem.textContent = data;
-            event.dataTransfer.setData("text", temp);
         }
     </script>
 </body>
 </html>
-
