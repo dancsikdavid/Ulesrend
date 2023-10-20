@@ -9,25 +9,31 @@
 
     <div class="seat-columns">
         <div class="seat-column" id="seatColumn1">
-            <h2>Ülőhelyek (1. oszlop):</h2>
             <ul id="seatList1" ondrop="drop(event, 'seatList1')" ondragover="allowDrop(event)">
+                <li class="draggable" draggable="true" ondragstart="drag(event)">Üres hely</li>
             </ul>
         </div>
 
         <div class="seat-column" id="seatColumn2">
-            <h2>Ülőhelyek (2. oszlop):</h2>
             <ul id="seatList2" ondrop="drop(event, 'seatList2')" ondragover="allowDrop(event)">
+                <li class="draggable" draggable="true" ondragstart="drag(event)">Üres hely</li>
             </ul>
         </div>
     </div>
 
-    <button type="button" onclick="loadFile()">Fájl kiválasztása</button>
+    <button type="button" id="fileSelectButton" onclick="loadFile()">Fájl kiválasztása</button>
+    <button type="button" onclick="resetAll()">Törlés</button>
+
+    <div id="nameContainer"></div>
 
     <script>
         const seatCount = 20;
-
         const seats1 = new Array(seatCount / 2).fill("");
         const seats2 = new Array(seatCount / 2).fill("");
+
+        let originalNameContainerContent = "";
+
+        let fileSelected = false;
 
         function displaySeats() {
             const seatList1 = document.getElementById("seatList1");
@@ -43,37 +49,62 @@
 
         function createListItem(seatList, name) {
             const listItem = document.createElement("li");
-            listItem.innerHTML = `<span class="blue-square"></span> <span contenteditable="true" oninput="updateName(event)">${name !== "" ? name : "Üres hely"}</span>`;
-            listItem.setAttribute("draggable", true);
-            listItem.setAttribute("ondragstart", "drag(event)");
+            listItem.className = "draggable";
+            listItem.draggable = true;
+            listItem.textContent = name !== "" ? name : "Üres hely";
+            listItem.addEventListener("dragstart", drag);
             seatList.appendChild(listItem);
         }
 
-        function selectSeat() {
-            const seatNumber = parseInt(document.getElementById("seatNumber").value);
-            const name = document.getElementById("name").value;
+        let dragSource = null;
 
-            if (seatNumber >= 1 && seatNumber <= seatCount) {
-                if (seatNumber <= seatCount / 2) {
-                    seats1[seatNumber - 1] = name;
-                } else {
-                    seats2[seatNumber - seatCount / 2 - 1] = name;
+        function drag(event) {
+            dragSource = event.target;
+            event.dataTransfer.setData("text", event.target.textContent);
+        }
+
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drop(event, seatListId) {
+            event.preventDefault();
+            const data = event.dataTransfer.getData("text");
+            const seatList = document.getElementById(seatListId);
+            const listItem = event.target;
+
+            if (listItem.className === "draggable") {
+                const sourceText = dragSource.textContent;
+                dragSource.textContent = listItem.textContent;
+                listItem.textContent = sourceText;
+
+                const index1 = Array.from(document.getElementById("seatList1").children).indexOf(dragSource);
+                const index2 = Array.from(document.getElementById("seatList2").children).indexOf(listItem);
+
+                if (seatListId === "seatList1") {
+                    seats1[index1] = listItem.textContent;
+                    seats2[index2] = sourceText;
+                } else if (seatListId === "seatList2") {
+                    seats2[index2] = listItem.textContent;
+                    seats1[index1] = sourceText;
                 }
-
-                displaySeats();
-                document.getElementById("seatNumber").value = "";
-                document.getElementById("name").value = "";
-            } else {
-                alert("Hibás ülőhely sorszám. Kérem, válasszon újra.");
             }
         }
 
+        displaySeats();
+
         function loadFile() {
+            if (fileSelected) {
+                alert("Új fájl kiválasztásához először törölje ki az eddigi fájlokat a Törlés gombbal!");
+                return;
+            }
+
             const fileInput = document.createElement("input");
             fileInput.type = "file";
             fileInput.accept = ".txt";
 
             fileInput.addEventListener("change", (event) => {
+                fileSelected = true;
                 const file = event.target.files[0];
                 if (file) {
                     const reader = new FileReader();
@@ -90,52 +121,36 @@
 
         function processFileContent(content) {
             const names = content.split('\n');
+            const container = document.getElementById("nameContainer");
+            originalNameContainerContent = container.innerHTML;
+            container.innerHTML = '';
+
             for (let i = 0; i < names.length && i < seatCount; i++) {
                 const name = names[i].trim();
-                if (i < seatCount / 2) {
-                    seats1[i] = name;
-                } else {
-                    seats2[i - seatCount / 2] = name;
+
+                if (name) {
+                    const nameDiv = document.createElement("div");
+                    nameDiv.textContent = name;
+                    nameDiv.classList.add("name-entry");
+                    nameDiv.draggable = true;
+                    nameDiv.addEventListener("dragstart", drag);
+                    container.appendChild(nameDiv);
                 }
             }
             displaySeats();
         }
 
-        function updateName(event) {
-            const updatedName = event.target.textContent.trim();
-            const listItem = event.target.parentElement;
-            const seatList = listItem.parentElement;
+        function resetAll() {
+            const container = document.getElementById("nameContainer");
+            container.innerHTML = originalNameContainerContent;
 
-            if (seatList.id === "seatList1") {
-                const index = Array.from(seatList.children).indexOf(listItem);
-                seats1[index] = updatedName;
-            } else if (seatList.id === "seatList2") {
-                const index = Array.from(seatList.children).indexOf(listItem);
-                seats2[index] = updatedName;
-            }
-        }
+            seats1.fill("");
+            seats2.fill("");
 
-        displaySeats();
+            displaySeats();
 
-        function drag(event) {
-            event.dataTransfer.setData("text", event.target.textContent);
-        }
-
-        function allowDrop(event) {
-            event.preventDefault();
-        }
-
-        function drop(event, seatListId) {
-            event.preventDefault();
-            const data = event.dataTransfer.getData("text");
-            const seatList = document.getElementById(seatListId);
-            const listItem = event.target;
-
-            if (!seats1.includes(data) && !seats2.includes(data)) {
-                listItem.textContent = "";
-            }
-
-            listItem.textContent = data;
+            fileSelected = false;
+            document.getElementById("fileSelectButton").disabled = false;
         }
     </script>
 </body>
