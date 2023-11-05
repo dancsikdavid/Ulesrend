@@ -1,3 +1,4 @@
+/* Stílus az első sorhoz */
 .seat {
     width: 140px;
     height: 140px;
@@ -8,17 +9,24 @@
     line-height: 60px;
     cursor: cell;
 }
-
+/* Üres terület a sor közepén */
 .empty-space {
-    width: 200px;
+    width: 200px; /* Állítsd be a kívánt szélességet */
     height: 100px;
 }
 
+/* Stílus a második sorhoz */
+/* Ha a második sorban ugyanazt a stílust szeretnéd, ne írd meg újra, hanem használd az .seat osztályt újra. */
+
+/* Egy sorban lévő elemeket elrendezzük vízszintesen */
 .row {
     display: flex;
     align-items: center;
 }
 
+/* Ha szükséges, hozz létre több .row osztályt a soroknak */
+
+/* Alapvető stílusok a teljes oldalra */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -27,6 +35,7 @@ body {
     padding: 0;
 }
 
+/* Fejléc stílusa */
 header {
     background-color: #333;
     color: #fff;
@@ -34,6 +43,7 @@ header {
     text-align: center;
 }
 
+/* Menüpontok stílusa */
 nav {
     text-align: center;
 }
@@ -48,12 +58,14 @@ nav li {
     margin-right: 20px;
 }
 
+/* Szövegek stílusa */
 p {
     font-size: 16px;
     line-height: 1.5;
     margin: 20px;
 }
 
+/* Gomb stílusa */
 .button {
     background-color: #007bff;
     color: #fff;
@@ -68,12 +80,14 @@ p {
     background-color: #0056b3;
 }
 
+/* Címsorok stílusa */
 h1, h2, h3 {
     font-family: 'Helvetica Neue', sans-serif;
     font-weight: bold;
     margin: 20px 0;
 }
 
+/* Lábléc stílusa */
 footer {
     background-color: #333;
     color: #fff;
@@ -84,7 +98,6 @@ footer {
 div{
     margin: 50px;
 }
-
 .name{
     -webkit-touch-callout: none;
     -webkit-user-select: none;

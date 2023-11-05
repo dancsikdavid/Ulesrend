@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Classroom Seat Chart Maker</title>
+    <link rel="stylesheet" href="asd.css">
+</head>
+<body>
+    <h1>Classroom Seat Chart Maker</h1>
+    <table id="table">
+        <tr>
+            <td><div class="seat" id="seat1" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+            <td><div class="seat" id="seat2" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+            <td><div id="student"></div></td>
+            <td><div class="seat" id="seat3" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+            <td><div class="seat" id="seat4" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+        </tr>
+        <!-- Egyéb sorok... -->
+    </table>
+
+    <div>
+        <input type="file" id="fileInput" accept=".txt" onchange="handleFileSelect(event)">
+    </div>
+
+    <div id="names" class="names-container">
+        
+    </div>
+
+    <script>
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            var data = event.dataTransfer.getData("text");
+            var target = event.target;
+
+            if (target.className === "seat") {
+                var oldName = target.innerText;
+                var draggedSeat = document.getElementById(data);
+                var seatContent = target.innerText;
+
+                target.innerText = draggedSeat.innerText;
+                draggedSeat.innerText = seatContent;
+            }
+        }
+
+        function handleFileSelect(event) {
+            const fileInput = event.target;
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const fileContent = e.target.result;
+                    const namesArray = fileContent.split('\n').filter(name => name.trim() !== '');
+                    const namesContainer = document.getElementById("names");
+                    namesContainer.innerHTML = '';
+                    namesArray.forEach(function (name, index) {
+                        const nameElement = document.createElement("div");
+                        nameElement.className = "name";
+                        nameElement.id = "name" + index; // Egyedi azonosítók
+                        nameElement.draggable = true;
+                        nameElement.innerText = name;
+                        nameElement.setAttribute("ondragstart", "drag(event)");
+                        namesContainer.appendChild(nameElement);
+                    });
+                };
+                reader.readAsText(file);
+            }
+        }
+    </script>
+</body>
+</html>

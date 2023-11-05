@@ -2,38 +2,24 @@ function allowDrop(event) {
     event.preventDefault();
 }
 
-
 function drag(event) {
-    event.dataTransfer.setData("text", event.target.innerText);
+    event.dataTransfer.setData("text", event.target.id);
 }
 
-
 function drop(event) {
+    event.preventDefault();
     var data = event.dataTransfer.getData("text");
     var target = event.target;
 
-
-    if (target.innerText !== "") {
-
+    if (target.className === "seat") {
         var oldName = target.innerText;
-        target.innerText = data;
+        var draggedSeat = document.getElementById(data);
+        var seatContent = target.innerText;
 
-
-        var namesContainer = document.getElementById("names");
-        var nameElements = namesContainer.getElementsByClassName("name");
-        for (var i = 0; i < nameElements.length; i++) {
-            if (nameElements[i].innerText === oldName) {
-                nameElements[i].innerText = data;
-                break;
-            }
-        }
-    } else {
-
-        target.innerText = data;
+        target.innerText = draggedSeat.innerText;
+        draggedSeat.innerText = seatContent;
     }
 }
-
-
 
 function handleFileSelect(event) {
     const fileInput = event.target;
@@ -46,10 +32,11 @@ function handleFileSelect(event) {
             const namesArray = fileContent.split('\n').filter(name => name.trim() !== '');
             const namesContainer = document.getElementById("names");
             namesContainer.innerHTML = '';
-            namesArray.forEach(function (name) {
+            namesArray.forEach(function (name, index) {
                 const nameElement = document.createElement("div");
                 nameElement.className = "name";
-                nameElement.draggable = true; 
+                nameElement.id = "name" + index; // Egyedi azonosítók
+                nameElement.draggable = true;
                 nameElement.innerText = name;
                 nameElement.setAttribute("ondragstart", "drag(event)");
                 namesContainer.appendChild(nameElement);
