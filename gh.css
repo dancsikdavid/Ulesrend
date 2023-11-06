@@ -1,15 +1,32 @@
-/* Egyéb stílusok */
+body{
+    background-image: linear-gradient(to bottom right, rgb(117, 166, 235), rgb(91, 79, 206),rgb(55, 62, 92));
+    background-attachment:fixed;
+    height:100%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 
 #open-classroom-button {
-    background-color: #007bff;
-    color: #fff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: #000000;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s;
 }
 
 #open-classroom-button:hover {
-    background-color: #0056b3;
+    background-color: #0000008e;
+    color: #ffffff;
+}
+
+header{
+    margin-top: 80px;
+    text-align: center;
+}
+
+section{
+    text-align: center;
 }

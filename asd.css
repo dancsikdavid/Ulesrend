@@ -1,49 +1,42 @@
-/* Stílus az első sorhoz */
-.seat {
-    width: 140px;
-    height: 140px;
-    background-color: #ccc;
-    border: 1px solid #999;
-    margin: 5px;
-    text-align: center;
-    line-height: 60px;
-    cursor: cell;
-}
-/* Üres terület a sor közepén */
-.empty-space {
-    width: 200px; /* Állítsd be a kívánt szélességet */
-    height: 100px;
-}
-
-/* Stílus a második sorhoz */
-/* Ha a második sorban ugyanazt a stílust szeretnéd, ne írd meg újra, hanem használd az .seat osztályt újra. */
-
-/* Egy sorban lévő elemeket elrendezzük vízszintesen */
-.row {
-    display: flex;
-    align-items: center;
-}
-
-/* Ha szükséges, hozz létre több .row osztályt a soroknak */
-
-/* Alapvető stílusok a teljes oldalra */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-image: linear-gradient(to bottom right, rgb(117, 166, 235), rgb(91, 79, 206),rgb(55, 62, 92));
+    height:100%;
     color: #333;
     margin: 0;
     padding: 0;
 }
 
-/* Fejléc stílusa */
+.seat {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 140px;
+    height: 140px;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    margin: 5px;
+    text-align: center;
+    line-height: 60px;
+    cursor: cell;
+}
+
+.empty-space {
+    width: 200px;
+    height: 100px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
 header {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: #333;
     color: #fff;
     padding: 20px;
     text-align: center;
 }
 
-/* Menüpontok stílusa */
 nav {
     text-align: center;
 }
@@ -58,14 +51,12 @@ nav li {
     margin-right: 20px;
 }
 
-/* Szövegek stílusa */
 p {
     font-size: 16px;
     line-height: 1.5;
     margin: 20px;
 }
 
-/* Gomb stílusa */
 .button {
     background-color: #007bff;
     color: #fff;
@@ -80,14 +71,12 @@ p {
     background-color: #0056b3;
 }
 
-/* Címsorok stílusa */
 h1, h2, h3 {
     font-family: 'Helvetica Neue', sans-serif;
     font-weight: bold;
     margin: 20px 0;
 }
 
-/* Lábléc stílusa */
 footer {
     background-color: #333;
     color: #fff;
