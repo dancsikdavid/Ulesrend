@@ -9,9 +9,11 @@
     <h1>Informatika I.</h1>
     <div>
         <input type="file" id="fileInput" accept=".txt" onchange="handleFileSelect(event)">
-    </div>
+        <button id="back-to-main-button">Vissza a főoldalra</button>
 
-    <table>
+    </div>
+    
+ <table>
         <tr>
             <td><div class="seat" id="seat1" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
              <td><div class="seat" id="seat2" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
@@ -52,9 +54,6 @@
 
     </table>
 
-    <div id="names" class="names-container">
-        
-    </div>
 
     <script src="mai.js"></script>
 </body>
