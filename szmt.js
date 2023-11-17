@@ -35,7 +35,7 @@ function handleFileSelect(event) {
             namesArray.forEach(function (name, index) {
                 const nameElement = document.createElement("div");
                 nameElement.className = "name";
-                nameElement.id = "name" + index; // Egyedi azonosítók
+                nameElement.id = "name" + index;
                 nameElement.draggable = true;
                 nameElement.innerText = name;
                 nameElement.setAttribute("ondragstart", "drag(event)");
@@ -45,13 +45,11 @@ function handleFileSelect(event) {
         reader.readAsText(file);
     }
 }
-// koko.js
 
-// Vissza a főoldalra gomb kiválasztása
 var backButton = document.getElementById('back-to-main-button');
 
-// Gombra kattintás eseménykezelő hozzáadása
+
 backButton.addEventListener('click', function() {
-    // Visszalépés az előző oldalra
+
     window.history.back();
 });

@@ -7,11 +7,13 @@
 </head>
 <body>
     <h1>Informatika I.</h1>
-    <div>
-        <input type="file" id="fileInput" accept=".txt" onchange="handleFileSelect(event)">
-        <button class="button-87" id="back-to-main-button">Vissza a főoldalra</button>
+    <center>
+        <div class="sav">
+            <input type="file" id="fileInput" accept=".txt" onchange="handleFileSelect(event)">
+            <button class="button-87" id="back-to-main-button">Vissza a főoldalra</button>
+        </div>
+    </center>
 
-    </div>
     
  <table>
         <tr>
@@ -47,6 +49,13 @@
              <td><div class="seat" id="seat17" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
              <td><div class="seat" id="seat18" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
         </tr>
+        <tr>
+            <td><div></div></td>
+            <td><div></div></td>
+           <td><div></div></td>
+            <td><div class="seat" id="seat19" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+            <td><div class="seat" id="seat20" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+       </tr>
         <div id="names" class="names-container">
         
         </div>

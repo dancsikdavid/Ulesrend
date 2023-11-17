@@ -7,11 +7,12 @@
 </head>
 <body>
     <h1>Informatika VII.</h1>
-    <div>
-        <input type="file" id="fileInput" accept=".txt" onchange="handleFileSelect(event)">
-        <button class="button-87" id="back-to-main-button">Vissza a főoldalra</button>
-    </div>
-
+    <center>
+        <div class="sav">
+            <input type="file" id="fileInput" accept=".txt" onchange="handleFileSelect(event)">
+            <button class="button-87" id="back-to-main-button">Vissza a főoldalra</button>
+        </div>
+    </center>
     <table>
         <tr>
             <td><div class="seat" id="seat1" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
