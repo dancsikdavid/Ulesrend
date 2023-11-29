@@ -21,6 +21,19 @@ function drop(event) {
     }
 }
 
+function clearNames() {
+    var namesContainer = document.getElementById('names');
+    namesContainer.innerHTML = '';
+
+    var seatElements = document.querySelectorAll('.seat');
+    seatElements.forEach(function(seat) {
+        seat.innerHTML = '';
+    });
+
+    var fileInput = document.getElementById('fileInput');
+    fileInput.value = '';
+}
+
 function handleFileSelect(event) {
     const fileInput = event.target;
     const file = fileInput.files[0];
