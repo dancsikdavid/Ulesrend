@@ -2,7 +2,7 @@
 
 Pacekos ülésrend készítő a Pollak egyetemnek
 
-##Használat
+## Használat
 Remélhetőleg egyértelmű
 ## Közreműködők
 
